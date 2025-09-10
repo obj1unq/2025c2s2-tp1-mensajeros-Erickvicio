@@ -1,0 +1,45 @@
+import example.*
+
+describe "Casos de prueba sugeridos" {
+test "El paquete de George que no está pago no puede ser 
+llevado por Neo a la matrix." {
+    
+    paquete.estaPago(false)  
+    neo.tieneSaldo(false)
+
+    assert.notThat(paquete.puedeSerEntregado(laMatrix,neo)) 
+
+  }
+
+test "El paquete de George que sí está pago puede ser
+llevado por Jean a la matrix" {
+
+    paquete.estaPago(true)  
+    assert.that(paquete.puedeSerEntregado(laMatrix,jeanGray))
+
+    }
+
+
+test "El paquete de George que sí está pago no puede ser llevado por Sara
+(que pesa 70kg) a Brooklyn si es que utiliza un camión con un acoplado ."{
+
+    paquete.estaPago(true)
+    saraConnor.pesoPropio(70)
+    saraConnor.metodoDeTrans(camion)
+    camion.cantidadDeAcoplados(1)
+
+    assert.notThat(paquete.puedeSerEntregado(puenteDeBrooklyn,saraConnor)) 
+  
+}
+
+test "La entrega anterior puede hacerse si Sara usa una moto" {
+  
+    paquete.estaPago(true)
+    saraConnor.pesoPropio(70)
+    saraConnor.metodoDeTrans(moto)
+
+    assert.that(paquete.puedeSerEntregado(puenteDeBrooklyn,saraConnor)) 
+
+}
+
+}
